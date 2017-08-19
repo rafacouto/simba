@@ -3,16 +3,18 @@ st-link
 
 .. code:: text
 
-   sudo apt install libusb-1.0-0-dev
+   sudo apt install libusb-1.0-0-dev gdb-arm-none-eabi
    git clone https://github.com/eerimoq/stlink
+   cd stlink
    ./autogen.sh
    ./configure
    make
+   sudo make install
    sudo cp etc/udev/rules.d/49* /etc/udev/rules.d
-   udevadm control --reload-rules
-   udevadm trigger
+   sudo udevadm control --reload-rules
+   sudo udevadm trigger
 
-   modprobe -r usb-storage && modprobe usb-storage quirks=483:3744:i
+   sudo modprobe -r usb-storage && modprobe usb-storage quirks=483:3744:i
 
    st-util -1
    arm-none-eabi-gdb app.out
